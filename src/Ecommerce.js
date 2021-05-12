@@ -128,7 +128,85 @@ export class Ecommerce {
         });
     }
 
+    makePayout(
+        provider,
+        reference,
+        amount,
+        purchaseRef = '',
+        description = ''
+    ) {
+        let hash = CryptoJS.MD5(provider + reference + amount + this.apiKey).toString();
+        password = CryptoJS.MD5(this.secretCode).toString();
+        return axios.post(this.payoutUrl, {
+            provider: provider,
+            reference: reference,
+            amount: amount,
+            description: description,
+            purchaseref: purchaseRef,
+            store: this.store,
+            hash: hash,
+            password: password
+          });
+    }
+
+    payout(
+        provider,
+        reference,
+        amount,
+        purchaseRef = '',
+        description = '') {
+
+        switch (provider) {
+            case 'mtn_mobilemoney_cm':
+                response = this.makePayout(
+                    provider,
+                    reference,
+                    amount,
+                    purchaseRef,
+                    description
+                );
+                break;
+            case 'orange_money_cm':
+                response = this.makePayout(
+                    provider,
+                    reference,
+                    amount,
+                    purchaseRef,
+                    description
+                );
+                break;
+            case 'express_union_mobilemoney':
+                response = this.makePayout(
+                    provider,
+                    '237' + reference,
+                    amount,
+                    purchaseRef,
+                    description
+                );
+                break;
+            case 'afrikpay':
+                response = this.makePayout(
+                    provider,
+                    '237' + reference,
+                    amount,
+                    purchaseRef,
+                    description
+                );
+                break;
+            default:
+                console.log("Provider must be correctly define");
+            }
+    }
+
+    changeKey(){
+        hash = CryptoJS.MD5(this.store + this.apikey).toString();
+        return axios.post(this.changeKeyUrl, {
+            store: this.store,
+            hash: hash
+          });
+    }
+
     toString(){
-        
+        return this.store;
     }
 }
