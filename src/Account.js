@@ -26,7 +26,7 @@ export class Account {
     balance(){
         let hash = CryptoJS.MD5(this.agentId + this.apiKey).toString();
         return axios.post(this.balanceUrl, {
-            agentid: this.this.agentId,
+            agentid: this.agentId,
             agentplatform: this.agentPlatform,
             hash: hash,
         });
@@ -34,7 +34,7 @@ export class Account {
 
     changeKey(){
         return axios.post(this.changeKeyUrl, {
-            agentid: this.this.agentId,
+            agentid: this.agentId,
             apikey: this.apiKey,
         });
     }
