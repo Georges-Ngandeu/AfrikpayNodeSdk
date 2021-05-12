@@ -8,6 +8,10 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Georges-Ngandeu/AfrikpayNodeSdk"
+  },
   "type": "module",
   "dependencies": {
     "axios": "^0.21.1",
