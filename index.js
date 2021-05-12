@@ -5,8 +5,8 @@ import { Money } from './src/Money.js';
 import { Account } from './src/Account.js';
 
 
-module.exports = {
-    Ecommerce,
+export {
+    Ecommerce, 
     Airtime,
     Bill,
     Money,
