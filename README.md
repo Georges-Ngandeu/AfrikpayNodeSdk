@@ -172,6 +172,8 @@ bill.payBill(
 If you want to integrate airtime apis on you system, here are the two main steps to get the job done in the development environment. You an uncomment the code to test the others apis.
 
 ```
+import {Airtime} from 'afrikpay-node-sdk';
+
 let airtime = new Airtime(
     '3620724907638658',
     '3620724907638658',
@@ -204,6 +206,8 @@ airtime.airtimeStatus(
 ## Account api integration
 If you want to integrate account apis on you system, here are the two main steps to get the job done in the development environment. You an uncomment the code to test the others apis.
 ```
+import {Account} from 'afrikpay-node-sdk';
+
 let account = new Account(
     '3620724907638658',
     '3620724907638658',

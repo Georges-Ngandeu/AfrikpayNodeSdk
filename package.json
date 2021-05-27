@@ -1,6 +1,6 @@
 {
   "name": "afrikpay-node-sdk",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Afrikpay library for api payments",
   "main": "index.js",
   "scripts": {
