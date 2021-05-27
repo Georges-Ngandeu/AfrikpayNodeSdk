@@ -14,11 +14,11 @@ export class Bill {
     ){
         this.agentId = agentId;
         this.agentPlatform = agentPlatform;
-        this.billUrl = billUrl;
+        this.apiKey = apiKey;
         this.agentPassword = agentPassword;
+        this.billUrl = billUrl;
         this.billAmountUrl = billAmountUrl;
         this.billStatusUrl = billStatusUrl;
-        this.apiKey = apiKey;
     }
 
     toString(){

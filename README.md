@@ -28,7 +28,10 @@
   <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
   <ol>
     <li><a href="#getting">Getting started</a></li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#usage">Ecommerce integration</a></li>
+    <li><a href="#usage">Bill integration</a></li>
+    <li><a href="#usage">Airtime integration</a></li>
+    <li><a href="#usage">Account integration</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
@@ -53,20 +56,164 @@ This node library was created with the purpose of facilitating the integration o
    npm install afrikpay-node-sdk
    ```
 <!-- USAGE EXAMPLES -->
-## Usage
+## Ecommerce integration
 
-Let's suppose you want to integrate ecommerce payments on you system. Here are some steps to to get the job done in the development environment. 
+Let's suppose you want to integrate ecommerce payments on you system. Here are the two main steps to get the job done in the development environment.
+You an uncomment the code to test the others apis. 
 ```
 import {Ecommerce} from 'afrikpay-node-sdk';
 
 let ecommerce = new Ecommerce(
-    'AFC5308',
-    'b2b0c952269cd5c38903433759369ac7',
-    '',
-    'http://34.86.5.170:8086/api/ecommerce/collect/'
- );
+    'AFC6617',
+    '661671d0bd7bef499e7d80879c27d95e',
+    '7777',
+    'http://34.86.5.170:8086/api/ecommerce/collect/',
+    'http://34.86.5.170:8086/api/ecommerce/payout/',
+    'http://34.86.5.170:8086/api/ecommerce/deposit/',
+    'http://34.86.5.170:8086/api/ecommerce/changekey/',
+    'http://34.86.5.170:8086/api/ecommerce/transaction/status/'
+);
 
-ecommerce.collect('mtn_mobilemoney_cm', '677777777', 350)
+ecommerce.collect(
+    'mtn_mobilemoney_cm',
+    '677777777',
+    350).then(function (response) {
+        console.log(response.data);
+    }).catch(function (error) {
+        console.log(error);
+    });
+
+ecommerce.collect(
+//     'orange_money_cm',
+//     '699999999',
+//     400,
+//     '0000',
+//     'wdl125').then(function (response) {
+//         console.log(response.data);
+//     }).catch(function (error) {
+//         console.log(error);
+//     });
+
+
+// ecommerce.deposit()
+//     .then(function (response) {
+//             console.log(response.data);
+//         }).catch(function (error) {
+//             console.log(error);
+//         });
+
+// ecommerce.payout(
+//     'mtn_mobilemoney_cm',
+//     '677777777',
+//     350).then(function (response) {
+//         console.log(response.data);
+//     }).catch(function (error) {
+//         console.log(error);
+//     });
+```
+## Bill integration
+If you want to integrate bill payments apis on you system, here are the two main steps to get the job done in the development environment. You an uncomment the code to test the others apis.
+
+```
+import {Bill} from 'afrikpay-node-sdk';
+
+let bill = new Bill(
+    '3620724907638658',
+    '3620724907638658',
+    'e825e83873eafffff315fc3f22db2d59',
+    'afrikpay',
+    'http://34.86.5.170:8086/api/bill/v2/',
+    'http://34.86.5.170:8086/api/bill/getamount/',
+    'http://34.86.5.170:8086/api/bill/status/v2/'
+);
+
+bill.payBill(
+    'camwater',
+    '111111111111111',
+    2500,
+    'cash',
+    '321koi'
+).then(function (response) {
+    console.log(response.data);
+}).catch(function (error) {
+    console.log(error);
+});
+
+bill.payBill(
+//     'canal',
+//     '11111111111111',
+//     13500,
+//     'cash',
+//     '321bgh'
+// ).then(function (response) {
+//     console.log(response.data);
+// }).catch(function (error) {
+//     console.log(error);
+// });
+
+// bill.getBillAmount(
+//     'camwater',
+//     '111111111111111'
+// ).then(function (response) {
+//     console.log(response.data);
+// }).catch(function (error) {
+//     console.log(error);
+// });
+
+// bill.getBillStatus(
+//     '321bgh'
+// ).then(function (response) {
+//     console.log(response.data);
+// }).catch(function (error) {
+//     console.log(error);
+// });
+```
+## Airtime api integration
+If you want to integrate airtime apis on you system, here are the two main steps to get the job done in the development environment. You an uncomment the code to test the others apis.
+
+```
+let airtime = new Airtime(
+    '3620724907638658',
+    '3620724907638658',
+    'e825e83873eafffff315fc3f22db2d59',
+    'afrikpay',
+    'http://34.86.5.170:8086/api/airtime/v2/',
+    'http://34.86.5.170:8086/api/airtime/status/v2/'
+);
+
+airtime.makeAirtime(
+    'mtn',
+    '677777777',
+    1000,
+    'cash',
+    'zerty145'
+).then(function (response) {
+    console.log(response.data);
+}).catch(function (error) {
+    console.log(error);
+});
+
+airtime.airtimeStatus(
+//     'zerty145'
+// ).then(function (response) {
+//     console.log(response.data);
+// }).catch(function (error) {
+//     console.log(error);
+// });
+```
+## Account api integration
+If you want to integrate account apis on you system, here are the two main steps to get the job done in the development environment. You an uncomment the code to test the others apis.
+```
+let account = new Account(
+    '3620724907638658',
+    '3620724907638658',
+    'e825e83873eafffff315fc3f22db2d59',
+    'http://34.86.5.170:8086/api/account/agent/balance/v2/',
+    'http://34.86.5.170:8086/api/account/agent/balance/v2/',
+    'http://34.86.5.170:8086/api/account/developer/changekey/'
+);
+
+account.balance()
     .then(function (response) {
         console.log(response.data);
     })
@@ -74,27 +221,8 @@ ecommerce.collect('mtn_mobilemoney_cm', '677777777', 350)
         console.log(error);
     });
 ```
-By default the services are configure for production. For example, in production to make an ecommerce payment, you will write the above code. You can explore the src directory of the package to get the default values.
-
-```
-import {Ecommerce} from 'afrikpay-node-sdk';
-
-let ecommerce = new Ecommerce(
-    'AFC5308',
-    'b2b0c952269cd5c38903433759369ac7'
- );
-
-ecommerce.collect('mtn_mobilemoney_cm', '677777777', 350)
-    .then(function (response) {
-        console.log(response.data);
-    })
-    .catch(function (error) {
-        console.log(error);
-    });
-```
-
-_For more examples, please refer to the [Documentation](https://github.com/Georges-Ngandeu/AfrikpayNodeSdk)_.
-You can also explore the src directory of the package to see all the service available for each Afrikpay api product.
+## How to switch to production ?
+You can explore the src folder to see the default production setup. Just use the appropriate apikey, store code, agentid for production. If you have any problem using the library please contact us, we will be happy to help you. 
 <!-- LICENSE -->
 ## License
 

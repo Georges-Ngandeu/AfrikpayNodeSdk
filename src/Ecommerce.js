@@ -108,7 +108,7 @@ export class Ecommerce {
             accepturl: this.acceptUrl,
             cancelurl: this.cancelUrl,
             declineurl: this.declineUrl
-          });
+        });
     }
 
     deposit(){
@@ -136,7 +136,7 @@ export class Ecommerce {
         description = ''
     ) {
         let hash = CryptoJS.MD5(provider + reference + amount + this.apiKey).toString();
-        password = CryptoJS.MD5(this.secretCode).toString();
+        let password = CryptoJS.MD5(this.secretCode).toString();
         return axios.post(this.payoutUrl, {
             provider: provider,
             reference: reference,
@@ -155,7 +155,7 @@ export class Ecommerce {
         amount,
         purchaseRef = '',
         description = '') {
-
+        let response;
         switch (provider) {
             case 'mtn_mobilemoney_cm':
                 response = this.makePayout(
@@ -165,7 +165,7 @@ export class Ecommerce {
                     purchaseRef,
                     description
                 );
-                break;
+                return response;
             case 'orange_money_cm':
                 response = this.makePayout(
                     provider,
@@ -174,7 +174,7 @@ export class Ecommerce {
                     purchaseRef,
                     description
                 );
-                break;
+                return response;
             case 'express_union_mobilemoney':
                 response = this.makePayout(
                     provider,
@@ -183,7 +183,7 @@ export class Ecommerce {
                     purchaseRef,
                     description
                 );
-                break;
+                return response;
             case 'afrikpay':
                 response = this.makePayout(
                     provider,
@@ -192,7 +192,7 @@ export class Ecommerce {
                     purchaseRef,
                     description
                 );
-                break;
+                return response;
             default:
                 console.log("Provider must be correctly define");
             }
